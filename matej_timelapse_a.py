@@ -70,7 +70,7 @@ while True:
 # (without leading zeroes) if you want indefinite loop type if d.hour < 99 
 # or to if d.hour >= 7 and d.hour < 9 if you want to run it between time range
     
-        if d.minute >= 0 and d.minute < 50 : 
+        if d.minute >= 0 and d.minute < 55 : 
             
             # Capture the CURRENT time (not start time as set above) to insert into each capture image filename
             hour = "%02d" % (d.hour)
@@ -82,7 +82,7 @@ while True:
             print (" ====================================== Saving file at " + hour + ":" + mins + ":" + second)
             
             # Capture the image using raspistill. Set to capture with added sharpening, auto white balance and average metering mode witout preview on screen
-            if wCounter <=9 :
+            if wCounter <=2 : # change to 9
                 os.system("raspistill -w " + str(imgWidth) + " -h " + str(imgHeight) + " -o " + str(folderToSave) + "/" + str(fileName) + ".jpg " + str(imgParameters))
                 
             # Write out to log file
