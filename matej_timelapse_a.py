@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# run in console
+# run in console1
 # sudo python /your/file/location/raspiLapseCam.py (add &) if you wish to run as a
 # background task. A process ID will be shown which can be ended with
 
