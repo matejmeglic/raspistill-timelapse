@@ -213,13 +213,15 @@ while True:
                     logExport = 0
             
     else:
+# this part is used when script is run overnight (date change) and enforce saving images to different folder every day        
+# reinit day        
         d = datetime.datetime.now()
         initYear = "%04d" % (d.year) 
         initMonth = "%02d" % (d.month)
         initDate = "%02d" % (d.day)
         initHour = "%02d" % (d.hour)
         initMins = "%02d" % (d.minute)
-
+# config
         from os import path
         dateToday = datetime.date.today()
         dateIsYesterday = datetime.date.today()
@@ -235,16 +237,14 @@ while True:
         imgParameters = "-sh 100 -q 100 -v -ev -3 -vf -hf -awb off -awbg 1.6,1.7 -mm average -n"
 
 
-# Define the location where you wish to save files. 
-# If you run a local web server on Apache you could set this to /var/www/ to make them 
-# accessible via web browser.
+# reinit folder
         folderToSave = "/home/pi/camera/" + str(initYear) + str(initMonth) + str(initDate) + str(initHour) + str(initMins)
         if path.isdir("/home/pi/camera/") is False :
             os.mkdir("/home/pi/camera/")
         if path.isdir(folderToSave) is False :
             os.mkdir(folderToSave)
 
-# Set up a log file to store activities for any checks.
+# reinit logging (same file)
         logging.basicConfig(filename=str(folderToSave) + ".log",level=logging.DEBUG)
         logging.debug(" Ultimate RaspiLapse -- Started Log for " + str(folderToSave))
         logging.debug(" Logging session started at: "+ str(d))
