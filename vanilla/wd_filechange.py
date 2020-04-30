@@ -19,7 +19,7 @@ def on_modified(event):
         print("File copied successfully.") 
         os.system("git add /home/pi/raspistill-timelapse")
         os.system("git commit -m '4'")
-        os.system("git push -u original master")
+        os.system("git push -u origin master")
         print("git push")
 
 
