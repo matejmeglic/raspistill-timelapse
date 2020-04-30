@@ -73,7 +73,7 @@ while True:
 # or to if d.hour >= 7 and d.hour < 9 if you want to run it between time range
 # current settings doesn't allow 24-h streaming (folder generation, system log etc.)
     
-        if d.minute >= 0 and d.minute < 59 : 
+        if d.minute >= 0 and d.minute < 39 : 
             
             # Capture the CURRENT time (not start time as set above) to insert into each capture image filename
             hour = "%02d" % (d.hour)
@@ -97,11 +97,11 @@ while True:
                 logging.debug(' Full-res image saved: ' + str(folderToSave) + "/" + str(fileName) )
                 # create webpage image_shot every 10th image to /img (webpage will refresh image every 5min; calculate as wCount max number in if statement 
                 # x timeout between the picture x time to capture the picture as raspistill takes about 5.5 sec to take each picture)
-                if path.isdir() is False :
+                if path.isdir(pathImgW) is False :
                     os.mkdir(pathImgW)
                     logging.debug(' Folder created: '+pathImgW)
                 # ffmpeg creates virtual copy in github repo
-                os.system("ffmpeg -i "+str(folderToSave) + "/" + str(fileName)+".jpg -vf scale="+str(imgWidth)+":"+ str(imgHeight) + pathImgW + str(fileName) + ".jpg -y")
+                os.system("ffmpeg -i "+str(folderToSave) + "/" + str(fileName)+".jpg -vf scale="+str(imgWidth)+":"+ str(imgHeight)+" " + pathImgW + str(fileName) + ".jpg -y")
                 logging.debug(" Compressed image saved to www: "+pathImgW + str(fileName) + ".jpg (UPDATED)" )
                 # ffmpeg creates virtual copy in /www_alltime folder (so you have easy access to all published photos)
                 if path.isdir(str(folderToSave)+"/www_alltime/") is False :

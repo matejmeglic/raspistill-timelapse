@@ -6,7 +6,6 @@ import datetime
 from os import listdir, path
 from os.path import isfile, join
 
-
 logCounter = 0
   
 while True:
