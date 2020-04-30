@@ -1,47 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
+var image_link = ""
+
+class App extends Component {
 
 
-function App() {
-  // Create a request variable and assign a new XMLHttpRequest object to it.
-var request = new XMLHttpRequest()
+  componentDidMount() {
+    this.loadData()
+    setInterval(this.loadData, 30000);
+  }
 
-// Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://api.github.com/repos/matejmeglic/raspistill-timelapse/contents/public/img/', true);
+  loadData() {
+     try {
+      var request = new XMLHttpRequest();
 
-request.onload = function() {
-  // Begin accessing JSON data here
-  var data = JSON.parse(this.response);
-  console.log(data);
+      request.open('GET', 'https://api.github.com/repos/matejmeglic/raspistill-timelapse/contents/public/img/', true);
+      
+      request.onload = function() {
+        var data = JSON.parse(this.response);
+        // console.log(data);
+        // console.log(data[0]);
+        // console.log(data[0].download_url); 
+        image_link = String(data[0].download_url)
+      }
+      
+      
 
-}
+      request.send()
+    
 
-// Send request
-request.send()
-
-
+        this.setState({
+          image_link: image_link,
+           
+        })
+        
+    } catch (e) {
+        console.log(e);
+    }
+  }
+  
 
   
+render () {
+ console.log(this.state)
   return (
+
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src={image_link} className="timelapse" alt="timelapse" />
       </header>
     </div>
   );
 }
+}
+
 
 export default App;
+
+
