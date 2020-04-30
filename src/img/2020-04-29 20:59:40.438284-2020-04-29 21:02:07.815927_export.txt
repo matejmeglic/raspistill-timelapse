@@ -1,0 +1,27 @@
+EXPORTED DATA: 2020-04-29 20:59:40.438284-2020-04-29 21:02:07.815927
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-00-00
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-00-07
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-00-15
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-00-23
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-00-31
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-00-39
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-00-47
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-00-55
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-03
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-10
+DEBUG:root: Compressed image saved to www: /home/pi/camera/www/latest_image.jpg (UPDATED)
+DEBUG:root: Folder created: /home/pi/camera/20200429_2059/www_alltime/
+DEBUG:root: Compressed image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-10
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-20
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-28
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-36
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-43
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-51
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_2059/2020-04-29_21-01-59
+DEBUG:root: Folder created: /home/pi/camera/20200429_2059/export
+DEBUG:root: Timelapse created: /home/pi/camera/20200429_2059/export/2020-04-29_21-01-59
+DEBUG:root: 16 photos recorded during the session. 
+DEBUG:root: Total size before compression: 0.075 GB / 77.0 MB
+DEBUG:root: 16 photos after compression.  
+DEBUG:root: Total size after compression: 0.006 GB / 5.9 MB
+DEBUG:root: Logging session ended at: 2020-04-29 21:02:07.815927
