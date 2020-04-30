@@ -1,0 +1,11 @@
+EXPORTED DATA: 2020-04-29 19:17:40.654907-2020-04-29 19:18:03.904026
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_1917/2020-04-29_19-17-40
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_1917/2020-04-29_19-17-48
+DEBUG:root: Full-res image saved: /home/pi/camera/20200429_1917/2020-04-29_19-17-56
+DEBUG:root: Folder created: /home/pi/camera/20200429_1917/export
+DEBUG:root: Timelapse created: /home/pi/camera/20200429_1917/export/2020-04-29_19-17-56
+DEBUG:root: 3 photos recorded during the session. 
+DEBUG:root: Total size before compression: 0.013 GB / 13.4 MB
+DEBUG:root: 3 photos after compression.  
+DEBUG:root: Total size after compression: 0.001 GB / 1.5 MB
+DEBUG:root: Logging session ended at: 2020-04-29 19:18:03.904026
