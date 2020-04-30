@@ -26,12 +26,12 @@ while True:
                 os.system("rm "+initPath+onlyFiles[0])
                 onlyFiles.remove(onlyFiles[0])
    
-            os.system("git add /home/pi/raspistill-timelapse/public/img/")
-            print("add")
-            os.system("git commit -m 'upload "+onlyFiles[0]+"'")
-            print("commit")
-            os.system("git push -u origin master")
-            print("Git push - file "+onlyFiles[0]+" updated successfully!")
+        os.system("git add /home/pi/raspistill-timelapse/public/img/")
+        print("add")
+        os.system("git commit -m 'upload "+onlyFiles[0]+"'")
+        print("commit")
+        os.system("git push -u origin master")
+        print("Git push - file "+onlyFiles[0]+" updated successfully!")
     else :
         print("IMG - No changes - "+ str(len(onlyFiles)) +" image in the IMG folder!")
     
