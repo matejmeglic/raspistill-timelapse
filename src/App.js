@@ -1,61 +1,41 @@
-import React, { Component } from 'react';
-import './App.css';
-
-var image_link = ""
-
+import React, { Component } from "react";
+import "./App.css";
 class App extends Component {
-
-
+  state = {
+    imgSrc: null,
+  };
   componentDidMount() {
-    this.loadData()
-    setInterval(this.loadData, 30000);
+    this.loadData();
+    setInterval(this.loadData, 10000);
   }
-
-  loadData() {
-     try {
-      var request = new XMLHttpRequest();
-
-      request.open('GET', 'https://api.github.com/repos/matejmeglic/raspistill-timelapse/contents/public/img/', true);
-      
-      request.onload = function() {
-        var data = JSON.parse(this.response);
-        // console.log(data);
-        // console.log(data[0]);
-        // console.log(data[0].download_url); 
-        image_link = String(data[0].download_url)
-      }
-      
-      
-
-      request.send()
-    
-
-        this.setState({
-          image_link: image_link,
-           
-        })
-        
-    } catch (e) {
-        console.log(e);
-    }
+  loadData = () => {
+    fetch(
+      "https://api.github.com/repos/matejmeglic/raspistill-timelapse/contents/public/img/"
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        const [firstImg] = res;
+        const { html_url } = firstImg;
+        if (html_url) {
+          this.setState({
+            imgSrc: `${html_url}?raw=true`,
+          });
+        }
+      });
   }
-  
-
-  
-render () {
- console.log(this.state)
-  return (
-
-    <div className="App">
-      <header className="App-header">
-        <img src={image_link} className="timelapse" alt="timelapse" />
-      </header>
-    </div>
-  );
+  render() {
+    const { imgSrc } = this.state;
+    return (
+      <div className="App">
+        <header className="App-header">
+          {imgSrc ? (
+            <img src={imgSrc} className="timelapse" alt="timelapse" />
+          ) : (
+            "loading"
+          )}
+        </header>
+      </div>
+    );
+  }
 }
-}
-
-
 export default App;
-
-
