@@ -13,11 +13,14 @@ def on_modified(event):
        
         source = "/home/pi/camera/www/latest_image.jpg"
         
-        destination = "/home/pi/raspistill-timelapse/public/img/latest_image.jpg"
+        destination = "/home/pi/raspistill-timelapse/src/img/latest_image.jpg"
 
         shutil.copyfile(source, destination) 
         print("File copied successfully.") 
-
+        os.system("git add /home/pi/raspistill-timelapse")
+        os.system("git commit -m '4'")
+        os.system("git push -u original master")
+        print("git push")
 
 
 
