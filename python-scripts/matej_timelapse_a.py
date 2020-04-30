@@ -73,7 +73,7 @@ while True:
 # or to if d.hour >= 7 and d.hour < 9 if you want to run it between time range
 # current settings doesn't allow 24-h streaming (folder generation, system log etc.)
     
-        if d.minute >= 0 and d.minute < 39 : 
+        if d.minute >= 0 and d.minute < 59 : 
             
             # Capture the CURRENT time (not start time as set above) to insert into each capture image filename
             hour = "%02d" % (d.hour)

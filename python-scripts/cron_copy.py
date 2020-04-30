@@ -26,7 +26,7 @@ while True:
                 os.system("rm "+initPath+onlyFiles[0])
                 onlyFiles.remove(onlyFiles[0])
    
-            os.system("git add "+initPath)
+            os.system("git add /home/pi/raspistill-timelapse/public/img/")
             print("add")
             os.system("git commit -m 'upload "+onlyFiles[0]+"'")
             print("commit")
