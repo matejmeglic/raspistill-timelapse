@@ -15,7 +15,7 @@ class App extends Component {
      try {
       var request = new XMLHttpRequest();
 
-      const res = request.open('GET', 'https://api.github.com/repos/matejmeglic/raspistill-timelapse/contents/public/img/', true);
+      request.open('GET', 'https://api.github.com/repos/matejmeglic/raspistill-timelapse/contents/public/img/', true);
       
       request.onload = function() {
         var data = JSON.parse(this.response);
@@ -25,7 +25,8 @@ class App extends Component {
         image_link = String(data[0].download_url)
       }
       
-    
+      
+
       request.send()
     
 
@@ -47,7 +48,7 @@ render () {
 
     <div className="App">
       <header className="App-header">
-        <img src={this.state} className="timelapse" alt="timelapse" />
+        <img src={image_link} className="timelapse" alt="timelapse" />
       </header>
     </div>
   );
