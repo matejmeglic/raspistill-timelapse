@@ -73,7 +73,7 @@ while True:
 # or to if d.hour >= 7 and d.hour < 9 if you want to run it between time range
 # current settings doesn't allow 24-h streaming (folder generation, system log etc.)
     
-        if d.minute >= 0 and d.minute < 59 : 
+        if d.minute >= 0 and d.minute < 16 : 
             
             # Capture the CURRENT time (not start time as set above) to insert into each capture image filename
             hour = "%02d" % (d.hour)
@@ -86,7 +86,7 @@ while True:
             print (" ====================================== Saving file at " + hour + ":" + mins + ":" + second)
             
             # Capture the image using raspistill. 
-            if wCounter <=9 : # change to 9 - every 10th image will have special action (duplicated to alltime folder and github repo)
+            if wCounter <=5 : # change to 9 - every 10th image will have special action (duplicated to alltime folder and github repo)
                 os.system("raspistill -w " + str(imgWidth) + " -h " + str(imgHeight) + " -o " + str(folderToSave) + "/" + str(fileName) + ".jpg " + str(imgParameters))
                 logging.debug(' Full-res image saved: ' + str(folderToSave) + "/" + str(fileName) )
                 wCounter += 1
