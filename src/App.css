@@ -2,25 +2,13 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #05556b;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(4px + 1vmin);
   color: white;
 }
 
@@ -28,16 +16,52 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .timelapse {
   max-width: 100%;
   display: block;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.footer {
+  font-size:16px;
+}
+
+.column {
+  float: left;
+  width: 46%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    margin-left:0;
+    margin-right:0;
+  }
+}
+
+.iframe-container {
+  overflow: hidden;
+  padding-top: 75%;
+  position: relative;
+}
+ 
+.iframe-container iframe {
+   border:0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
 }
