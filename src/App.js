@@ -32,10 +32,12 @@ class App extends Component {
         const nameShort = name.slice(0, name.length-4);
 
         if (html_url) {
-          this.setState({
-            imgSrc: `${html_url}?raw=true`,
-            imgName: `Trenutno stanje ${nameShort}`,
-          });
+          if (this.state.imgSrc !== html_url) {             
+            this.setState({
+              imgSrc: `${html_url}?raw=true`,
+              imgName: `Trenutno stanje ${nameShort}`,
+            });
+          }
         }
       });
   }
@@ -48,7 +50,7 @@ class App extends Component {
         <header className="App-header">
         <h1>Najlepše je doma</h1>
         </header>
-        <body>
+        
         <div className="row">
           <div className="column">
           {imgName ? (
@@ -71,7 +73,7 @@ class App extends Component {
           </div>
         </div>
         <p className="footer">Fotografija v živo se osvežuje vsakih 5 minut med 05:00 in 21:00.</p>
-        </body>
+        
        </div>
     );
   }
