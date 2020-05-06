@@ -22,7 +22,7 @@ class App extends Component {
 
   loadData = () => {
     fetch(
-      "https://api.github.com/repos/matejmeglic/ku_tl_cam/contents/public/img/"
+      "https://api.github.com/repos/matejmeglic/tl_cam/contents/public/img/"
     )
       .then((res) => res.json())
       .then((res) => {
