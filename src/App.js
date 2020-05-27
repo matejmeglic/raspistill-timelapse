@@ -72,7 +72,7 @@ class App extends Component {
           </div>
           </div>
         </div>
-        <p className="footer">Fotografija v živo se osvežuje vsakih 5 minut med 05:00 in 21:00.</p>
+        <p className="footer">Fotografija v živo se osvežuje vsakih 5 minut med 04:00 in 22:00.</p>
         
        </div>
     );
