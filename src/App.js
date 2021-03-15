@@ -57,7 +57,7 @@ class App extends Component {
   render() {
     // const { imgSrc } = this.state;
     // const { imgName } = this.state;
-    const { width } = this.state;
+    // const { width } = this.state;
     const { photoJSON } = this.state;
     return (
       <div className="App">
