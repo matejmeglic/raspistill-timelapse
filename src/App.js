@@ -1,42 +1,122 @@
 import React, { Component } from "react";
 import "./App.css";
 
+// S3 bucket policy and CORS need to be set
+// folders that are created on the S3 have to be Made public
+// files that are uploaded have to be uploaded with a setting --acl public-read
+
 class App extends Component {
   state = {
-    imgSrc:
-      "https://camera1.s3.eu-central-1.amazonaws.com/current/2021-03-14_210555.jpg",
-    imgName: "",
+    bucketPath: "https://camera1.s3.eu-central-1.amazonaws.com", // set S3 bucket
+    folder: ["current", "newFolder"], // set S3 folders for different cameras you would like to show
+    currentImages: [],
   };
 
   componentDidMount() {
-    this.setState({
-      imgName: this.fetchHeader(this.state.imgSrc, "Last-Modified"),
-    });
-    setInterval(this.updatePicture, 60000);
+    this.loadXML();
+    setInterval(this.loadXML, 60000); // define refresh rate
   }
 
-  fetchHeader = (url, wch) => {
-    try {
-      var req = new XMLHttpRequest();
-      req.open("HEAD", url, false);
-      req.send(null);
-      if (req.status === 200) {
-        return req.getResponseHeader(wch).substring(5);
-      } else return false;
-    } catch (er) {
-      return er.message;
-    }
-  };
+  loadXML = () => {
+    var XMLParser = require("react-xml-parser");
 
-  updatePicture = () => {
-    var myImageElement = document.getElementById("currentImage");
-    myImageElement.src = this.state.imgSrc;
+    fetch(this.state.bucketPath)
+      .then((response) => response.text())
+      .then((response) => {
+        let xml = new XMLParser().parseFromString(response); // convert XML to JSON
+        let imageFolders = [];
+        let isLastFolderPushed = true;
+        let itemsInFolder = [];
+        for (let i = 0; i < xml.children.length; i++) {
+          if (xml.children[i].name === "Contents") {
+            // check only files and folders
+            let contentsObject = {
+              folder: "",
+              key: "",
+              lastModified: "", // not sure if we need lastModified, currently not used as this is time of upload, not of capture
+            };
+
+            for (let j = 0; j < xml.children[i].children.length; j++) {
+              // check for specific file parameters
+              for (let k = 0; k < this.state.folder.length; k++) {
+                // differentiate different folders in the process
+                if (
+                  (xml.children[i].children[j].name === "Key" &&
+                    xml.children[i].children[j].value.slice(
+                      0,
+                      this.state.folder[k].length
+                    ) === this.state.folder[k]) ||
+                  xml.children[i].children[j].name === "LastModified"
+                ) {
+                  if (xml.children[i].children[j].name === "Key") {
+                    contentsObject.key = xml.children[i].children[j].value;
+                    contentsObject.folder = xml.children[i].children[j].value // add folder to the object for datetimestamp extraction
+                      .substring(0, this.state.folder[k].length);
+                  } else if (
+                    xml.children[i].children[j].name === "LastModified"
+                  ) {
+                    contentsObject.lastModified =
+                      xml.children[i].children[j].value;
+                  }
+                }
+              }
+            }
+            if (
+              // business logic to group images on the bucket per folder
+              itemsInFolder.length === 0 ||
+              itemsInFolder[itemsInFolder.length - 1].folder ===
+                contentsObject.folder
+            ) {
+              itemsInFolder.push(contentsObject);
+              isLastFolderPushed = false;
+            } else {
+              imageFolders.push(itemsInFolder);
+              itemsInFolder = [];
+              itemsInFolder.push(contentsObject);
+              isLastFolderPushed = true;
+            }
+          }
+        }
+        if (isLastFolderPushed === false) {
+          // safeguard that the last folder is also pushed
+          imageFolders.push(itemsInFolder);
+        }
+
+        let currentImages = []; // extract latest images for each folder-camera, render HTML
+        for (let l = 0; l < imageFolders.length; l++) {
+          currentImages.push(
+            <span
+              key={imageFolders[l][imageFolders[l].length - 1].lastModified}
+            >
+              <p>
+                Trenutno stanje{" "}
+                {imageFolders[l][imageFolders[l].length - 1].key.substring(
+                  imageFolders[l][imageFolders[l].length - 1].folder.length + 1,
+                  imageFolders[l][imageFolders[l].length - 1].key.length - 4
+                )}
+              </p>
+              <img
+                src={`${this.state.bucketPath}/${
+                  imageFolders[l][imageFolders[l].length - 1].key
+                }`}
+                alt={imageFolders[l][imageFolders[l].length - 1].lastModified}
+              ></img>
+            </span>
+          );
+        }
+
+        this.setState({
+          // set state
+          currentImages: currentImages,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
-    const { imgSrc } = this.state;
-    const { imgName } = this.state;
-
+    const { currentImages } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -44,10 +124,7 @@ class App extends Component {
         </header>
 
         <div className="row">
-          <div className="column">
-            <p>Trenutno stanje {imgName}</p>
-            <img src={imgSrc} alt="currentImage" id="currentImage"></img>
-          </div>
+          <div className="column">{currentImages} </div>
           <div className="column">
             <p>Posnetki preteklih dni</p>
             <div className="iframe-container">
