@@ -87,7 +87,8 @@ class App extends Component {
         let currentImages = []; // extract latest images for each folder-camera, render HTML
         for (let l = 0; l < imageFolders.length; l++) {
           currentImages.push(
-            <span
+            <div
+              className="col-sm-10 col-md-6"
               key={imageFolders[l][imageFolders[l].length - 1].lastModified}
             >
               <p>
@@ -103,7 +104,7 @@ class App extends Component {
                 }`}
                 alt={imageFolders[l][imageFolders[l].length - 1].lastModified}
               ></img>
-            </span>
+            </div>
           );
         }
 
@@ -122,27 +123,30 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Najlepše je doma</h1>
+          <h2>Najlepše je doma</h2>
         </header>
-
-        <div className="row">
-          <div className="column">{currentImages} </div>
-          <div className="column">
-            <p>Posnetki preteklih dni</p>
-            <div className="iframe-container">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/videoseries?list=PLo2FhF1b8pqBma6paQWuzL6epRpj_THO6&autoplay=0&loop=1&rel=0&showinfo=0&color=white&iv_load_policy=3"
-                frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                title="ytlist"
-                allowFullScreen
-              ></iframe>
+        <div className="container">
+          <br />
+          <div className="row">
+            {currentImages}
+            <div className="col-sm-10 col-md-12">
+              <br />
+              <p>Posnetki preteklih dni</p>
+              <div className="iframe-container">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/videoseries?list=PLo2FhF1b8pqBma6paQWuzL6epRpj_THO6&autoplay=0&loop=1&rel=0&showinfo=0&color=white&iv_load_policy=3"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  title="ytlist"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           </div>
+          <p className="footer">
+            Fotografija v živo se osvežuje vsakih 5 minut med 04:00 in 22:00.
+          </p>
         </div>
-        <p className="footer">
-          Fotografija v živo se osvežuje vsakih 5 minut med 04:00 in 22:00.
-        </p>
       </div>
     );
   }

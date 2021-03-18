@@ -3,18 +3,21 @@
 }
 
 .App-header {
-  background: rgb(2,0,36);
-  background: linear-gradient(167deg, rgba(2,0,36,1) 0%, rgba(54,54,149,1) 0%, rgba(54,54,149,1) 25%, rgba(0,212,255,1) 100%);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    167deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(54, 54, 149, 1) 0%,
+    rgba(54, 54, 149, 1) 25%,
+    rgba(0, 212, 255, 1) 100%
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(4px + 1vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
+  padding: 2vmin 0 2vmin;
 }
 
 .timelapse {
@@ -24,38 +27,13 @@
 
 p {
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .footer {
-  font-size:16px;
-  margin-left:5%;
+  font-size: 16px;
+  margin-left: 5%;
   margin-right: 5%;
-}
-
-.column {
-  float: left;
-  width: 46%;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    margin-left:0;
-    margin-right:0;
-  }
-
-  .App-header {
-    font-size: calc(8px + 1vmin);
-  }
 }
 
 .iframe-container {
@@ -63,14 +41,14 @@ p {
   padding-top: 75%;
   position: relative;
 }
- 
+
 .iframe-container iframe {
-   border:0;
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;
+  border: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 img {
