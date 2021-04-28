@@ -53,7 +53,7 @@ class App extends Component {
     });
 
     this.setState({
-      last_modified_east: this.fetchHeader(
+      last_modified_south: this.fetchHeader(
         "https://camera1.s3.eu-central-1.amazonaws.com/camera_south/latest/camera_south_latest.jpg",
         "Last-Modified"
       ),
@@ -67,7 +67,7 @@ class App extends Component {
       latest_south,
       last_modified_west,
       last_modified_east,
-      last_modifiet_south,
+      last_modified_south,
     } = this.state;
     return (
       <div className="App">
@@ -86,7 +86,7 @@ class App extends Component {
               <img src={latest_east} alt="camera_east"></img>
             </div>
             <div className="col-sm-12">
-              <p>Trenutno stanje {last_modifiet_south}</p>
+              <p>Trenutno stanje {last_modified_south}</p>
               <img src={latest_south} alt="camera_east"></img>
             </div>
 
