@@ -13,8 +13,11 @@ class App extends Component {
       "https://camera1.s3.eu-central-1.amazonaws.com/camera_west/latest/camera_west_latest.jpg",
     latest_east:
       "https://camera1.s3.eu-central-1.amazonaws.com/camera_east/latest/camera_east_latest.jpg",
+    latest_south:
+      "https://camera1.s3.eu-central-1.amazonaws.com/camera_south/latest/camera_south_latest.jpg",
     last_modified_west: "",
     last_modified_east: "",
+    last_modified_south: "",
   };
 
   componentDidMount() {
@@ -48,14 +51,23 @@ class App extends Component {
         "Last-Modified"
       ),
     });
+
+    this.setState({
+      last_modified_east: this.fetchHeader(
+        "https://camera1.s3.eu-central-1.amazonaws.com/camera_south/latest/camera_south_latest.jpg",
+        "Last-Modified"
+      ),
+    });
   };
 
   render() {
     const {
       latest_west,
       latest_east,
+      latest_south,
       last_modified_west,
       last_modified_east,
+      last_modifiet_south,
     } = this.state;
     return (
       <div className="App">
@@ -65,13 +77,17 @@ class App extends Component {
         <div className="container">
           <br />
           <div className="row">
-            <div className="col-sm-10 col-md-6">
+            <div className="col-sm-12">
               <p>Trenutno stanje {last_modified_west}</p>
               <img src={latest_west} alt="camera_west"></img>
             </div>
-            <div className="col-sm-10 col-md-6">
+            <div className="col-sm-12">
               <p>Trenutno stanje {last_modified_east}</p>
               <img src={latest_east} alt="camera_east"></img>
+            </div>
+            <div className="col-sm-12">
+              <p>Trenutno stanje {last_modifiet_south}</p>
+              <img src={latest_south} alt="camera_east"></img>
             </div>
 
             <div className="col-sm-10 col-md-12">
